@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LAVORIMODULISCUOLAVIVA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif; /* Choose a nice font */
+      background-color: #f4f4f4; /* Light gray background */
+      color: #333; /* Dark gray text color */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 0;
+      border: none;
+    }
+    .header {
+      background-color: #008000; /* Green background */
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 2.5em; /* Larger heading */
+      text-align: center; /* Center the title */
+    }
+    .description-cell {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff; /* White background for descriptions */
+      border-bottom: 1px solid #ddd; /* Subtle border between descriptions */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .description-cell h3 {
+      margin-bottom: 10px;
+      font-size: 1.5em; /* Slightly larger subheading */
+    }
+    .description-cell p {
+      margin-bottom: 10px; /* Add space below description text */
+      font-size: 1em; /* Normal font size for description text */
+      line-height: 1.5;
+    }
+    .description-cell img {
+      max-width: 80%; /* Make images smaller for better layout */
+      height: auto;
+      border: 1px solid #ddd; /* Border for description images */
+      margin-top: 10px;
+    }
+    .image-slide {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff; /* White background for image slide */
+      border-bottom: 1px solid #ddd; /* Subtle border between descriptions */
+      position: relative; /* Allow absolute positioning of child elements */
+    }
+    .image-slide img {
+      max-width: 80%; /* Smaller images for image slide */
+      height: auto;
+      cursor: pointer;
+    }
+    .description-cell img, .image-slide img {
+      transition: transform 0.3s ease;
+    }
+    .description-cell img:hover, .image-slide img:hover {
+      transform: scale(1.1);
+    }
+    .left-column {
+      width: 50%;
+      float: left;
+    }
+    .right-column {
+      width: 50%;
+      float: right;
+      /* Ensure the right column is aligned with the left one */
+    }
+    #content-area {
+      padding: 20px;
+      background-color: #fff; /* White background for page content */
+      flex-grow: 1; /* Allow the content area to take up available space */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header div {
+      display: flex; /* Use flexbox for better image alignment */
+      align-items: center; /* Vertically align images */
+    }
+    .header img {
+      margin-right: 20px; /* Add space between images */
+      max-width: 100px; /* Adjust image size as needed */
+      height: auto;
+    }
+    .description-cell {
+      display: flex; /* Enable flexbox for the description cell */
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+    }
+    .description-cell img {
+      margin-top: 10px; /* Add some space above the image */
+    }
+    .image-row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px; /* Add space between rows */
+    }
+    .image-row img {
+      max-width: 45%; /* Adjust width for desired spacing */
+      height: auto;
+    }
+    .image-slide-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px; /* Space between slides */
+    }
+    .image-slide-container img {
+      max-width: 500px; /* Adjust image size as needed */
+      height: auto;
+      cursor: pointer;
+    }
+    .video-slide-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px; /* Space between slides */
+    }
+    .video-slide-container video {
+      max-width: 500px; /* Adjust video size as needed */
+      height: auto;
+      cursor: pointer;
+    }
+    .slide-controls {
+      display: flex;
+      justify-content: center;
+    }
+    .slide-controls button {
+      margin: 0 10px; /* Space between buttons */
+    }
+    .slide-controls span {
+      cursor: pointer;
+      font-size: 2em;
+      user-select: none;
+    }
+    .pdf-viewer-container {
+      margin-bottom: 20px;
+    }
+    .arrow {
+      cursor: pointer;
+      font-size: 2em;
+      user-select: none;
+    }
+    .prev {
+      margin-right: 10px;
+    }
+    /* Fancy Image Slide Styles */
+    #image-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .image-slide img {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .image-slide img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    /* More Fancy Styles */
+    h1, h3 {
+      font-family: 'Times New Roman', serif; /* Or another serif font you like */
+    }
+    p {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <table height="100%" width="100%" border="0">
+    <tr>
+      <td class="header" colspan="2">
+        <h1>Lavori Moduli Scuola Viva</h1>
+        <div>
+          <a href="https://www.scientificoavellino.it/"><img src="logomancini.png" alt="LogoMancini"></a>
+          <a href="https://lavoro.regione.campania.it/index.php/home/campania-attiva/campania-attiva-scuola-viva"><img src="logoscuolaviva.png" alt="LogoScuolaViva"></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="left-column">
+        <div class="description-cell">
+          <h3>Chi siamo?</h3>
+          <p>Il Liceo Scientifico Statale "Pasquale Stanislao Mancini" di Avellino: un faro di istruzione Nato nel 1923, come "Istituto Tecnico Inferiore", il Liceo Mancini di Avellino si trasforma nel tempo, diventando "Liceo Moderno" nel 1924/25 e assumendo l'attuale denominazione nel 1931, in onore del giurista irpino Pasquale Stanislao Mancini. La sede storica, in via De Concilii, progettata dall'ing. Mazzei e inaugurata nel 1934, rappresenta un luogo di cultura e istruzione da quasi un secolo. Tra i Presidi illustri, ricordiamo Guido Battisti e Ferdinando Morgoglione. Dal 2019, la Prof.ssa Paola Anna Gianfelice guida l'istituto con innovazione. Il Liceo Mancini, oltre all'istruzione di alto livello, trasmette valori di cittadinanza e cultura, ispirandosi alla figura di Pasquale Stanislao Mancini, giurista e uomo politico di grande fama. Oggi, l'istituto rappresenta un punto di riferimento per la formazione dei giovani, preparandoli alle sfide del futuro con un corpo docente altamente qualificato e una didattica all'avanguardia.</p>
+          <img src="logomancini.png" alt="LogoMancini">
+        </div>
+        <div class="description-cell">
+          <h3>Chi è Scuola Viva?</h3>
+          <p>SCUOLA VIVA è il programma quadriennale, finanziato mediante risorse del Fondo Sociale Europeo, con cui la Regione Campania sta realizzando, già dall’anno scolastico 2016-2017, una serie di interventi volti a potenziare l’offerta formativa del sistema scolastico regionale. L’obiettivo è innalzare il livello della qualità della scuola campana e rafforzare la relazione tra scuola, territorio, imprese e cittadini. Sono circa 500 le scuole della Campania che aprono nelle ore pomeridiane per offrire iniziative culturali, sociali, artistiche e sportive ai ragazzi e alle loro famiglie, in particolare nelle realtà più difficili del territorio. Oltre 400mila gli studenti coinvolti nei circa 3.000 moduli didattico-formativi, ovvero: 115.000 ore didattiche straordinarie per circa 37.000 aperture settimanali rivolte alla platea scolastica e al territorio che coinvolgono anche 3.000 associazioni, strutture formative, professionisti, esperti ed enti preposti.</p>
+          <img src="logoscuolaviva.png" alt="LogoScuolaViva">
+        </div>
+        <div class="description-cell">
+          <h3>Con chi abbiamo lavorato?</h3>
+          <p>Sotto questo testo, cliccando sui loghi, potrai scoprire le aziende e gli enti che hanno collaborato con il Liceo Scientifico Statale "Pasquale Stanislao Mancini" per rendere possibile la realizzazione di questi lavori. Queste collaborazioni offrono agli studenti opportunità di formazione e sbocchi lavorativi futuri.</p>
+          <div class="image-row">
+            <a href="https://x.com/acibav"><img src="aciblogo.png" alt="LogoAcib"></a>
+            <a href="https://legambiente.campania.it/?fbclid=IwZXh0bgNhZW0CMTAAAR3B-0urHBj8DLWhdcatskBKwv3MsCZ0J8PgEkSfaHv0sGqhHol-OfMFZ4k_aem_AbOk9c987jy5MYbRGXFcY8Z0W2vhOzCCOvar346ptp5W3daiQLguu9Vyysx75wiL_v9pfyAuyFj-8gC8WQMC445_"><img src="legambientecampanialogo.png" alt="LogoLGBC"></a>
+          </div>
+          <div class="image-row">
+            <a href="http://www.caiavellino.it/"><img src="caiavellinologo.png" alt="LogoCai"></a>
+            <a href="https://www.sistemisrl.it/site/home/"><img src="SCPElogo.png" alt="LogoSCPE"></a>
+            <a href="https://www.federvolley.it/"><img src="federvolleylogo.png" alt="LogoFedervolley"></a>
+          </div>
+        </div>
+      </td>
+      <td class="right-column" id="image-slide">
+        <!-- Image slides will be added here dynamically -->
+      </td>
+    </tr>
+  </table>
+  <div id="content-area"></div>
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script> 
+  <script>
+    const images = [
+      {
+        src: "Modulo1.png",
+        alt: "Image 1",
+        content: `<h1>Modulo 1, 4AGAPFREESCHOOL</h1>
+    <p>Il percorso offre un’equa opportunità di studio attraverso percorsi didattici laboratoriali tematici in lingua inglese, di educazione alla multiculturalità e alla legalità. Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1k3r-XDHXcaBu0HvAmRE3-R-oGcU4kOqr?hl=it">modulo 1</a></p>
+    <div class="image-slide-container">
+      <img src="1modulo1.png" alt="Image 1a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+    </div>
+    <div class="slide-controls">
+
+    </div>
+    <div class="video-slide-container">
+
+
+      </video>
+    </div>
+    <div class="slide-controls">
+
+    </div>`
+      },
+      {
+        src: "Modulo2.png",
+        alt: "Image 2",
+        content: `<h1>Modulo 2 STEM@SCHOOL</h1>
+    <p>Il percorso “stem@school” ha come obiettivo quello di poter comunicare inlingua inglese tematiche DNL attraverso le metodologia CLIL (Content and Language Integrated Learning) in attività laboratoriali. Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1M5DpYuMIP1miy_VqmAtZnKudDyCSdANe?hl=it">modulo 2</a></p>
+     <img src="1modulo2.png" alt="Image 2a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-2"></div>
+    </div>`
+      },
+      {
+        src: "Modulo3.png",
+        alt: "Image 3",
+        content: `<h1>Modulo 3 Create Sites with Wordpress</h1>
+    <p>WordPress è una piattaforma software open source “accessibile a tutti”, che permette la creazione e distribuzione di siti Internet gestibili ed aggiornabili in maniera facile e veloce. Wordpresscos’è e perché usarlo: Se anche tu vuoi iniziare a creare il tuo sito web personale vai sul sito: https://wordpress.com . Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1_iz9TNNygwHnaP1Ww9H2wqqCYCYGUC1p?hl=it">modulo 3</a></p>
+     <img src="1modulo3.png" alt="Image 3a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-3"></div>
+    </div>`
+      },
+      {
+        src: "Modulo4.png",
+        alt: "Image 4",
+        content: `<h1>Modulo 4 La start up</h1>
+    <p>Una startup è una nuova impresa, costituita da uno o più imprenditori che hanno come obiettivo quello di creare e sviluppare un prodotto o servizio innovativo. Si configura come una società di capitali allaricerca di un business ripetibile e scalabile. Inizialmente il termine startup definiva solole nuove imprese del settore internet o delletecnologie dell’informazione, oggi invece questo termine identifica le imprese neonatein qualsiasi ambito. Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1mLnSxNyN0JucN8uE9ZIc-pFk3OBqLzab?hl=it">modulo 4</a></p>
+     <img src="1modulo4.png" alt="Image 4a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-1"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-2"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-3"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-4"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-5"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-6"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-7"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-8"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-9"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-10"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-11"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-12"></div>
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-13"></div>
+    </div>
+
+    </div>
+    <div class="slide-controls">
+
+    </div>
+    <div class="image-slide-container">
+
+    </div>
+    <div class="slide-controls">
+
+    </div>`
+      },
+      {
+        src: "Modulo5.png",
+        alt: "Image 5",
+        content: `<h1>Modulo 5 Discover Irpinia’s Mountains</h1>
+    <p>Il progetto “Discover Irpinia’s mountains” ha dato ai ragazzi l’opportunità di scoprire ed esplorare profili di diverse montagne irpine e non solo in collaborazione con il Club Alpino Italiano. Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1AuPoS3aVav-cUgD_iiLY8ZbvGF3y6oNo?hl=it">modulo 5</a></p>
+     <img src="1modulo5.png" alt="Image 1a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+    <div class="image-slide-container">
+
+    </div>
+    <div class="slide-controls">
+
+    </div>
+    <div class="pdf-viewer-container">
+      <div id="pdf-viewer-5"></div>
+    </div>`
+      },
+      {
+        src: "Modulo6.png",
+        alt: "Image 6",
+        content: "<h1>Modulo 6 LEGA AMBIENTE #UNAVELLINOPIÙPULITA</h1><p>“Non ti scordar di me” occasione in cui il nostro liceo, nel suo piccolo, insieme agli esperti di legambiente ha contribuito alla pulizia di alcune strade della città</p>"
+
+      },
+      {
+        src: "Modulo7.png",
+        alt: "Image 7",
+        content: `<h1>Modulo 7 Sport, Wellness on the move...Volleyball</h1>
+    <p>Noi ragazzi di “Sport, wellness on the move...volleyball” , promuoviamo la cultura del rispetto delle regole, del movimento e l’adozione di coretti stili divita per il benessere psicofisico. Inoltre, propone l’implementazione delle conoscenze tecniche e metodiche sulla pallavolo. Eccovi qui il link per accedere ai lavori del <a href= "https://drive.google.com/drive/folders/1uKHi-Ynm1CodKEBH_yV5SnRJSoj70VKP?hl=it">modulo 7</a>
+</p>
+<img src="1modulo7.png" alt="Image 7a" img src="2modulo1.png" alt="Image 2a" img src="3modulo1.png" alt="Image 3a" img src="4modulo1.png" alt="Image 4a"  id="current-image">
+<div class="image-slide-container">
+
+</div>
+<div class="slide-controls">
+
+</div>
+<div class="pdf-viewer-container">
+  <div id="pdf-viewer-5"></div>
+</div>`
+
+      }
+    ];
+    const imageContainer = document.getElementById('image-slide');
+    images.forEach(image => {
+      const link = document.createElement('a');
+      link.href = `javascript:showPage('${image.content}')`;
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+      link.appendChild(img);
+      imageContainer.appendChild(link);
+    });
+    function showPage(content) {
+      document.getElementById('content-area').innerHTML = content;
+    }
+    const page1Images = [
+      { src: "1modulo1.png", alt: "Image 1a" },
+      { src: "2modulo1.png", alt: "Image 1b" },
+      { src: "3modulo1.png", alt: "Image 1c" },
+      { src: "4modulo1.png", alt: "Image 1d" }
+    ];
+    let currentPage1ImageIndex = 0;
+    const currentPage1Image = document.getElementById('current-image');
+    function showPage1Image(index) {
+      currentPage1Image.src = page1Images[index].src;
+      currentPage1Image.alt = page1Images[index].alt;
+    }
+    function previousPage1Image() {
+      currentPage1ImageIndex = (currentPage1ImageIndex - 1 + page1Images.length) % page1Images.length;
+      showPage1Image(currentPage1ImageIndex);
+    }
+    function nextPage1Image() {
+      currentPage1ImageIndex = (currentPage1ImageIndex + 1) % page1Images.length;
+      showPage1Image(currentPage1ImageIndex);
+    }
+    // Video slide for Page 1
+    const page1Videos = [
+      { src: "video1a.mp4" },
+      { src: "video1b.mp4" },
+      { src: "video1c.mp4" },
+      { src: "video1d.mp4" }
+    ];
+    let currentPage1VideoIndex = 0;
+    const currentPage1Video = document.getElementById('current-video');
+    function showPage1Video(index) {
+      currentPage1Video.src = page1Videos[index].src;
+    }
+    function previousPage1Video() {
+      currentPage1VideoIndex = (currentPage1VideoIndex - 1 + page1Videos.length) % page1Videos.length;
+      showPage1Video(currentPage1VideoIndex);
+    }
+    function nextPage1Video() {
+      currentPage1VideoIndex = (currentPage1VideoIndex + 1) % page1Videos.length;
+      showPage1Video(currentPage1VideoIndex);
+    }
+    // Image slide for Page 4 - First Image Slide
+    const page4ImagesA = [
+      { src: "image4a.jpg", alt: "Image 4a" },
+      { src: "image4c.jpg", alt: "Image 4c" }
+    ];
+    let currentPage4ImageIndexA = 0;
+    const currentPage4ImageA = document.getElementById('current-image-4a');
+    function showPage4ImageA(index) {
+      currentPage4ImageA.src = page4ImagesA[index].src;
+      currentPage4ImageA.alt = page4ImagesA[index].alt;
+    }
+    function previousImage4a() {
+      currentPage4ImageIndexA = (currentPage4ImageIndexA - 1 + page4ImagesA.length) % page4ImagesA.length;
+      showPage4ImageA(currentPage4ImageIndexA);
+    }
+    function nextPage4a() {
+      currentPage4ImageIndexA = (currentPage4ImageIndexA + 1) % page4ImagesA.length;
+      showPage4ImageA(currentPage4ImageIndexA);
+    }
+    // Image slide for Page 4 - Second Image Slide
+    const page4ImagesB = [
+      { src: "image4b.jpg", alt: "Image 4b" },
+      { src: "image4d.jpg", alt: "Image 4d" }
+    ];
+    let currentPage4ImageIndexB = 0;
+    const currentPage4ImageB = document.getElementById('current-image-4b');
+    function showPage4ImageB(index) {
+      currentPage4ImageB.src = page4ImagesB[index].src;
+      currentPage4ImageB.alt = page4ImagesB[index].alt;
+    }
+    function previousImage4b() {
+      currentPage4ImageIndexB = (currentPage4ImageIndexB - 1 + page4ImagesB.length) % page4ImagesB.length;
+      showPage4ImageB(currentPage4ImageIndexB);
+    }
+    function nextPage4b() {
+      currentPage4ImageIndexB = (currentPage4ImageIndexB + 1) % page4ImagesB.length;
+      showPage4ImageB(currentPage4ImageIndexB);
+    }
+    // Image slide for Page 5
+    const page5Images = [
+      { src: "image5a.jpg", alt: "Image 5a" },
+      { src: "image5b.jpg", alt: "Image 5b" },
+      { src: "image5c.jpg", alt: "Image 5c" },
+      { src: "image5d.jpg", alt: "Image 5d" },
+      { src: "image5e.jpg", alt: "Image 5e" },
+      { src: "image5f.jpg", alt: "Image 5f" },
+      { src: "image5g.jpg", alt: "Image 5g" },
+      { src: "image5h.jpg", alt: "Image 5h" },
+      { src: "image5i.jpg", alt: "Image 5i" },
+      { src: "image5j.jpg", alt: "Image 5j" },
+      { src: "image5k.jpg", alt: "Image 5k" },
+      { src: "image5l.jpg", alt: "Image 5l" },
+      { src: "image5m.jpg", alt: "Image 5m" }
+    ];
+    let currentPage5ImageIndex = 0;
+    const currentPage5Image = document.getElementById('current-image-5a');
+    function showPage5Image(index) {
+      currentPage5Image.src = page5Images[index].src;
+      currentPage5Image.alt = page5Images[index].alt;
+    }
+    function previousImage5a() {
+      currentPage5ImageIndex = (currentPage5ImageIndex - 1 + page5Images.length) % page5Images.length;
+      showPage5Image(currentPage5ImageIndex);
+    }
+    function nextPage5a() {
+      currentPage5ImageIndex = (currentPage5ImageIndex + 1) % page5Images.length;
+      showPage5Image(currentPage5ImageIndex);
+    }
+    // PDF Viewer Logic - PDF.js
+    const pdfViewerElements = [
+      "pdf-viewer-1", "pdf-viewer-2", "pdf-viewer-3", "pdf-viewer-4",
+      "pdf-viewer-5", "pdf-viewer-6", "pdf-viewer-7", "pdf-viewer-8",
+      "pdf-viewer-9", "pdf-viewer-10", "pdf-viewer-11", "pdf-viewer-12",
+      "pdf-viewer-13"
+    ];
+    pdfViewerElements.forEach((viewerId, index) => {
+      const pdfContainer = document.getElementById(viewerId);
+      // Load PDF.js and then display the PDF
+      PDFJS.getDocument(`pdfs/pdf${index + 1}.pdf`).then(pdf => {
+        // Render the PDF in the #pdf-viewer element
+        pdf.getPage(1).then(page => {
+          const viewport = page.getViewport({ scale: 1.0 });
+          const canvas = document.createElement('canvas'); // Create a canvas element
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          pdfContainer.appendChild(canvas); // Append the canvas to the container
+          page.render({ canvasContext: context, viewport: viewport });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
